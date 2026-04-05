@@ -150,6 +150,10 @@
                     <span style="color: white;">7-Year Total Value</span>
                     <strong id="calc-7yr" style="color: var(--secondary);">$0.00</strong>
                 </div>
+                <div class="calc-box highlight-box" style="background: rgba(255, 75, 75, 0.2); border-color: #ff4b4b;">
+                    <span style="color: white;">10-Year Total Value</span>
+                    <strong id="calc-10yr" style="color: #ff6b6b; font-size: 36px;">$0.00</strong>
+                </div>
             </div>
             <div class="credit-banner">
                 + Eligible for $150 Bill Payoff Credit per Referral!
@@ -216,6 +220,7 @@
             document.getElementById('calc-3yr').textContent = formatter.format(monthlySavings * 36);
             document.getElementById('calc-5yr').textContent = formatter.format(monthlySavings * 60);
             document.getElementById('calc-7yr').textContent = formatter.format(monthlySavings * 84);
+            document.getElementById('calc-10yr').textContent = formatter.format(monthlySavings * 120);
         });
 
         document.getElementById('wattsup-funnel').addEventListener('submit', function(e) {
