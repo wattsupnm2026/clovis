@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clovis Low Income Bill Application</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+    button { margin-top: 20px; padding: 10px 20px; background: #2ea44f; color: white; border: none; cursor: pointer; font-size: 16px; }
+    button:hover { background: #22863a; }
+    #status { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Clovis, NM — Low Income Bill Application</h1>
+  <form id="applicationForm">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit">Submit Application</button>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    // Google Apps Script Web App URL placeholder — will be updated later
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+
+    document.getElementById("applicationForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const status = document.getElementById("status");
+      status.textContent = "Submitting...";
+
+      const formData = {
+        name: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        phone: document.getElementById("phone").value,
+        email: document.getElementById("email").value,
+      };
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        status.textContent = "✅ Application submitted successfully!";
+        this.reset();
+      } catch (err) {
+        status.textContent = "❌ Error submitting. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
